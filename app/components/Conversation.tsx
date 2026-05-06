@@ -10,10 +10,12 @@ export default function ConversationScreen(item: any) {
         <Text style={styles.messageName}>{item.name}</Text>
         <Text style={styles.messageText}>{item.message}</Text>
       </View>
-      <Text style={styles.lastMessageTime}>{item.lastMessageTime}</Text>
-      {!item.read && (
-        <Text style={styles.readIndicator}>1</Text>
-      )}
+      <View style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Text style={styles.lastMessageTime}>{item.lastMessageTime}</Text>
+        {!item.read && (
+            <Text style={styles.readIndicator}>1</Text>
+        )}
+      </View>
     </View>
   );
 }
@@ -66,6 +68,6 @@ const styles = StyleSheet.create({
     paddingVertical: 2,    
     fontSize: 12,
     marginLeft: 10,
-    alignSelf: 'flex-start',
+    alignSelf: 'flex-end',
   },
 });
