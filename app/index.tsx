@@ -1,5 +1,5 @@
-import { StyleSheet, View, Text, TextInput } from 'react-native';
-import { Plus, Search } from 'lucide-react-native';
+import { Moon, Plus, Search, TvMinimal } from 'lucide-react-native';
+import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import ConversationScreen from './components/Conversation';
 
 export default function HomeScreen() {
@@ -36,17 +36,46 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.messageText}>Messages</Text>
-        <Plus style={styles.plus}/>
+        <View style={styles.user}>
+          <Text style={styles.userInitial}>P</Text>
+          <View style={styles.userText}>
+            <Text style={styles.userName}>Pulse</Text>
+            <Text style={styles.appName}>Messagerie</Text>
+          </View>
+        </View>
+        <View style={styles.buttons}>
+          <Pressable style={styles.button}>
+            <Moon size={16} color="#374151" />
+            <Text style={styles.buttonText}>Sombre</Text>
+          </Pressable>
+          <Pressable style={styles.button}>
+            <TvMinimal size={16} color="#374151" />
+            <Text style={styles.buttonText}>Telephone</Text>
+          </Pressable>
+        </View>
       </View>
-      <View style={styles.searchBar}>
-        <Search/>
-        <TextInput style={styles.searchInput} placeholder="Rechercher..." />
-      </View>
-      <View>
-        {mockData.map((item) => (
-          <ConversationScreen key={item.id} {...item} />
-        ))}
+
+      <View style={styles.body}>
+        <View style={styles.card}>
+          
+          <View style={styles.cardHeader}>
+            <Text style={styles.messageText}>Messages</Text>
+            <Plus size={20} color="#007AFF" />
+          </View>
+
+          <View>
+            <View style={styles.searchBar}>
+              <Search size={16} color="#374151" />
+              <TextInput style={styles.searchInput} placeholder="Rechercher..." />
+            </View>
+            <View style={styles.conversations}>
+              {mockData.map((item) => (
+                <ConversationScreen key={item.id} {...item} />
+              ))}
+            </View>
+          </View>
+
+        </View>
       </View>
     </View>
   );
@@ -54,7 +83,72 @@ export default function HomeScreen() {
 
 const styles = StyleSheet.create({
   container: {
+    padding: 20,
+    flex: 1,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     margin: 20,
+  },
+  user: {
+    flexDirection: 'row',
+    gap: 10,
+  },
+  userInitial: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#007AFF',
+    color: '#ffffff',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  userText: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  userName: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#111827',
+  },
+  appName: {
+    fontSize: 14,
+    color: '#6b7280',
+  },
+  buttons: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  button: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+    borderRadius: 999,
+    borderWidth: 1,
+    borderColor: '#e5e7eb',
+    backgroundColor: '#ffffff',
+  },
+  buttonText: {
+    fontSize: 14,
+    color: '#374151',
+    fontWeight: '500',
+  },
+  body: {
+    alignItems: 'center',
+  },
+  card: {
+    width: '100%',
+    maxWidth: 500,
+    marginBottom: 20,
     marginTop: 50,
     padding: 20,
     paddingHorizontal: 20,
@@ -68,7 +162,7 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     elevation: 5,
   },
-  header: {
+  cardHeader: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -98,5 +192,8 @@ const styles = StyleSheet.create({
   searchInput: {
     width: '100%',
     ...({ outlineStyle: 'none' } as any)
-  }
+  },
+  conversations: {
+    width: '100%',
+  },
 });
