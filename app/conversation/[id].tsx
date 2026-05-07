@@ -35,9 +35,9 @@ export default function ConversationScreen() {
                         </View>
                     </View>
                     <View style={styles.cardHeaderRight}>
-                        <Phone size={20} style={styles.headerIcon} />
-                        <Video size={20} style={styles.headerIcon} />
-                        <EllipsisVertical size={20} style={styles.headerIcon} />
+                        <Phone size={20} color={colors.mutedForeground} />
+                        <Video size={20} color={colors.mutedForeground} />
+                        <EllipsisVertical size={20} color={colors.mutedForeground} />
                     </View>
                 </View>
                 <View style={styles.cardBody}>
@@ -60,7 +60,7 @@ export default function ConversationScreen() {
                         <TextInput style={styles.messageInput} placeholder="Message..." placeholderTextColor={colors.mutedForeground} />
                         <SendHorizontal color={colors.primary}/>
                     </View>
-                    <Mic style={styles.micButton}/>
+                    <Mic color={colors.voice}/>
                 </View>
             </View>
         </View>
